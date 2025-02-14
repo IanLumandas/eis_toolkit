@@ -66,7 +66,7 @@ def distance_computation(
     for geometry in geodataframe.geometry:
         if geometry.geom_type == "Polygon":
             coords = list(geometry.exterior.coords)
-            for x, y in coords:
+            for x, y, *z in coords:
                 polygon_coords.extend([x, y])
             polygon_indices.append(len(polygon_coords) // 2)
             segments = [
@@ -78,7 +78,7 @@ def distance_computation(
             segments = []
             for poly in geometry.geoms:
                 coords = list(poly.exterior.coords)
-                for x, y in coords:
+                for x, y, *z in coords:
                     polygon_coords.extend([x, y])
                 polygon_indices.append(len(polygon_coords) // 2)
 
